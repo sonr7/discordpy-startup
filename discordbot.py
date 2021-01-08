@@ -3,7 +3,9 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.t2_TUTbWMc8SN5PvnGdAO1sjx7k'
+open_file = open('gannbaretoken.txt')
+token = open_file.read()
+open_file.close()
 
 client = discord.Client()
 
