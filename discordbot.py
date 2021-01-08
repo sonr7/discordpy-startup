@@ -1,6 +1,9 @@
 import discord
+import logging
 
-token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.4E3yiS5mxgWq6T67i9U572XSs3o'
+logging.basicConfig(level=logging.INFO)
+
+token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.t2_TUTbWMc8SN5PvnGdAO1sjx7k'
 
 client = discord.Client()
 
