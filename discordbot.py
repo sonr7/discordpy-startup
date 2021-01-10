@@ -1,11 +1,21 @@
 import discord
+import math
+from functools import reduce
+from operator import mul
+from fractions import Fraction
+
+def inverse(f):
+    return Fraction(f.denominator,f.numerator)
+
+from decimal import Decimal
+
+import numpy as np
+
 import logging
 
 logging.basicConfig(level=logging.INFO)
 
-open_file = open('gannbaretoken.txt')
-token = open_file.read()
-open_file.close()
+token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.5dHeObhn5QRiPcvso6s3n7bX_YY'
 
 client = discord.Client()
 
@@ -41,6 +51,8 @@ async def on_message(message):
         await message.channel.send('俺も応援するぜ！がんばれ👍')
     if message.content == 'がんばった' or message.content == 'がんばったよ':
         await message.channel.send('よく頑張った！今後もがんばれ👍')
+    if message.content == 'ハハッ！':
+        await message.channel.send('(ミッキーだよ)')
     if '/p' in message.content:
         plus_list_str = message.content.split()
         plus_list_str.remove('/p')
@@ -62,15 +74,20 @@ async def on_message(message):
         time_list_str = message.content.split()
         time_list_str.remove('/t')
         time_list = map(int, time_list_str)
-        time = reduce(lambda x, y: x * y, time_list)
+        time = reduce(mul, time_list)
         await message.channel.send(time)
     if '/d' in message.content:
-        divide0, divide1_str, divide2_str = message.content.split()
-        divide1 = int(divide1_str)
-        divide2 = int(divide2_str)
-        divide = divide1 / divide2
+        divide_list_str = message.content.split()
+        divide_list_str.remove('/d')
+        divide11_str = divide_list_str[0]
+        divide11 = int(divide11_str)
+        divide1 = Decimal(divide11)
+        divide_list = map(int, divide_list_str)
+        divide22 = reduce(mul, divide_list)
+        divide2 = Decimal(divide22)
+        divide = (divide1 / divide2) * divide1
         await message.channel.send(divide)
-    if 'o' in message.content:
+    if '/o' in message.content:
         oio0, oio1_str, oio2_str = message.content.split( )
         oio1 = int(oio1_str)
         oio2 = int(oio2_str)
@@ -78,11 +95,17 @@ async def on_message(message):
         ii = oio1 // oio2
         iioio = f'{ii}あまり{oio}'
         await message.channel.send(iioio)
-    if '/x' in message.content:
-        xx0, xx1_str, xx2_str == message.content.split()
-        xx1 = int(xx1_str)
-        xx2 = int(xx2_str)
-        xx = xx1 ** xx2
-        await message.channel.send(xx)
+    if '/s' in message.content:
+        square0, square1_str, square2_str = message.content.split()
+        square1 = int(square1_str)
+        square2 = int(square2_str)
+        square = square1 ** square2
+        await message.channel.send(square)
+    if '/r' in message.content:
+        root0, root1_str = message.content.split()
+        root1 = int(root1_str)
+        root2 = math.sqrt(root1)
+        root = f'√{root1}, {root2}'
+        await message.channel.send(root)
 
 client.run(token)
