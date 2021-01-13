@@ -15,7 +15,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.5dHeObhn5QRiPcvso6s3n7bX_YY'
+token = 'Nzk0MTE0ODQyNTc5MzA0NDU4.X-2HFA.uoKf5xMukWmvaCj9r2HlY3rKzGM'
 
 client = discord.Client()
 
@@ -56,16 +56,16 @@ async def on_message(message):
     if '/p' in message.content:
         plus_list_str = message.content.split()
         plus_list_str.remove('/p')
-        plus_list = map(int, plus_list_str)
+        plus_list = map(float, plus_list_str)
         plus = sum(plus_list)
         await message.channel.send(plus)
     if '/m' in message.content:
         minus_list2_str = message.content.split()
         minus_list2_str.remove('/m')
         minus_str = minus_list2_str[0]
-        minus1 = int(minus_str)
+        minus1 = float(minus_str)
         minus_list2_str.remove(minus_list2_str[0])
-        minus_list2 = map(int, minus_list2_str)
+        minus_list2 = map(float, minus_list2_str)
         minus_list = [i * -1 for i in minus_list2]
         minus2 = sum(minus_list)
         minus = minus1 + minus2
@@ -73,37 +73,37 @@ async def on_message(message):
     if '/t' in message.content:
         time_list_str = message.content.split()
         time_list_str.remove('/t')
-        time_list = map(int, time_list_str)
+        time_list = map(float, time_list_str)
         time = reduce(mul, time_list)
         await message.channel.send(time)
     if '/d' in message.content:
         divide_list_str = message.content.split()
         divide_list_str.remove('/d')
         divide11_str = divide_list_str[0]
-        divide11 = int(divide11_str)
+        divide11 = float(divide11_str)
         divide1 = Decimal(divide11)
-        divide_list = map(int, divide_list_str)
+        divide_list = map(float, divide_list_str)
         divide22 = reduce(mul, divide_list)
         divide2 = Decimal(divide22)
         divide = (divide1 / divide2) * divide1
         await message.channel.send(divide)
     if '/o' in message.content:
         oio0, oio1_str, oio2_str = message.content.split( )
-        oio1 = int(oio1_str)
-        oio2 = int(oio2_str)
+        oio1 = float(oio1_str)
+        oio2 = float(oio2_str)
         oio = oio1 % oio2
         ii = oio1 // oio2
         iioio = f'{ii}あまり{oio}'
         await message.channel.send(iioio)
     if '/s' in message.content:
         square0, square1_str, square2_str = message.content.split()
-        square1 = int(square1_str)
-        square2 = int(square2_str)
+        square1 = float(square1_str)
+        square2 = float(square2_str)
         square = square1 ** square2
         await message.channel.send(square)
     if '/r' in message.content:
         root0, root1_str = message.content.split()
-        root1 = int(root1_str)
+        root1 = float(root1_str)
         root2 = math.sqrt(root1)
         root = f'√{root1}, {root2}'
         await message.channel.send(root)
